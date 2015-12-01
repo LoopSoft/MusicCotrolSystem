@@ -23,6 +23,7 @@ public class MusicManager : MonoBehaviour {
         //Garante que o Valor inicial sempre vai ser o de SoundSystem caso as barras sejam declaradas.
         if (volumeMusica != null && volumeEfeitos != null)
         {
+            test.init();// INICIALIZA A FUNÇÃO ATRIBUINDO OS VALORES GUARDADOS NO PLAYER PREF
             volumeMusica.value = test.VolumeMusic;
             volumeEfeitos.value = test.VolumeEffects;
         }
@@ -34,6 +35,8 @@ public class MusicManager : MonoBehaviour {
         {
             test.VolumeMusic = volumeMusica.value;
             test.VolumeEffects = volumeEfeitos.value;
+
+            test.StoresNewVolume(volumeMusica.value, volumeEfeitos.value);
 
             test.VolumeControl(musica, test.VolumeMusic);
             test.VolumeControl(efeitos, test.VolumeEffects);

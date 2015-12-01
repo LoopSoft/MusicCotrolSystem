@@ -12,13 +12,13 @@ public sealed class SoundSystem: MonoBehaviour
     {
         get { return _AudioConfiguration; }
     }
-    static float volumeMusic = 1; //Volume da musica geral.
+    static float volumeMusic; //Volume da musica geral.
     public float VolumeMusic
     {
         get { return volumeMusic; }
         set { volumeMusic = value; }
     }
-    static float volumeEffects = 1; //Volume dos efeitos gerais.
+    static float volumeEffects; //Volume dos efeitos gerais.
     public float VolumeEffects
     {
         get { return volumeEffects; }
@@ -55,9 +55,32 @@ public sealed class SoundSystem: MonoBehaviour
         for (int i = 0; i < Audio.Count; ++i)
             Audio[i].volume = Volume;
     }
+    /// <summary>
+    /// Armazena a configuração para a proxima vez que o usuario entrar no jogo.
+    /// </summary>
+    /// <param name="valueMusic"></param>
+    /// <param name="valueEffects"></param>
+    public void StoresNewVolume(float valueMusic, float valueEffects)
+    {
+        PlayerPrefs.SetFloat("Music", valueMusic);
+        PlayerPrefs.SetFloat("Effects", valueEffects);
+    }
     //EMD METODOS
     private SoundSystem() { }
-    void Update()
+    //bool cont = true;
+    public void init()
     {
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            VolumeMusic = PlayerPrefs.GetFloat("Music");
+            VolumeEffects = PlayerPrefs.GetFloat("Effects");
+            print("1");
+        }
+        else
+        {
+            VolumeEffects = 1;
+            VolumeMusic = 1;
+            print("2");
+        }
     }
 }
