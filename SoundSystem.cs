@@ -3,7 +3,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Garante que tudo envolvendo controle de audio está interligado.
 /// </summary>
-public sealed class SoundSystem: MonoBehaviour
+public sealed class SoundSystem : MonoBehaviour
 {
 
     // INIT ATRIBUTOS
@@ -33,7 +33,7 @@ public sealed class SoundSystem: MonoBehaviour
     /// <param name="Audio"></param>
     public void Pause(List<AudioSource> Audio)
     {
-        for(int i = 0; i < Audio.Count; ++i)
+        for (int i = 0; i < Audio.Count; ++i)
             Audio[i].Pause();
     }
     /// <summary>
@@ -67,20 +67,17 @@ public sealed class SoundSystem: MonoBehaviour
     }
     //EMD METODOS
     private SoundSystem() { }
-    //bool cont = true;
     public void init()
     {
         if (PlayerPrefs.HasKey("Music"))
         {
             VolumeMusic = PlayerPrefs.GetFloat("Music");
             VolumeEffects = PlayerPrefs.GetFloat("Effects");
-            print("1");
         }
         else
         {
             VolumeEffects = 1;
             VolumeMusic = 1;
-            print("2");
         }
     }
 }
